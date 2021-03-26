@@ -10,14 +10,14 @@ logger = singer.get_logger()
 
 
 def main_impl():
-    args = singer.utils.parse_args(['api_token', 'start_date'])
+    args = singer.utils.parse_args(["api_token", "start_date"])
 
     pipedrive_tap = PipedriveTap(args.config, args.state)
 
     if args.discover:
         catalog = pipedrive_tap.do_discover()
         json.dump(catalog.to_dict(), sys.stdout, indent=2)
-        logger.info('Finished discover')
+        logger.info("Finished discover")
     else:
         if args.catalog:
             catalog = args.catalog
@@ -34,5 +34,5 @@ def main():
         raise e
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

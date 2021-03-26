@@ -5,7 +5,6 @@ from .stages import StagesStream
 from .pipelines import PipelinesStream
 from .recents.users import RecentUsersStream
 from .recents.files import RecentFilesStream
-from .recents.delete_log import RecentDeleteLogsStream
 from .recents.dynamic_typing.notes import RecentNotesStream
 from .recents.dynamic_typing.activities import RecentActivitiesStream
 from .recents.dynamic_typing.deals import RecentDealsStream
@@ -16,8 +15,19 @@ from .dealflow import DealStageChangeStream
 from .deal_products import DealsProductsStream
 
 
-__all__ = ['CurrenciesStream', 'ActivityTypesStream', 'FiltersStream', 'StagesStream', 'PipelinesStream',
-           'RecentUsersStream', 'RecentFilesStream', 'RecentDeleteLogsStream'
-           'RecentNotesStream', 'RecentActivitiesStream', 'RecentDealsStream', 'RecentOrganizationsStream',
-           'RecentPersonsStream', 'RecentProductsStream', 'DealStageChangeStream', 'DealsProductsStream'
-           ]
+__all__ = [
+    "CurrenciesStream",
+    "ActivityTypesStream",
+    "FiltersStream",
+    "StagesStream",
+    "PipelinesStream",
+    "RecentUsersStream",
+    "RecentFilesStream",
+    "RecentNotesStream",
+    "RecentActivitiesStream",
+    "RecentDealsStream",
+    "RecentOrganizationsStream",
+    "RecentPersonsStream",
+    "DealStageChangeStream",
+    "DealsProductsStream",
+]

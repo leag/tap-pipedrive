@@ -85,13 +85,13 @@
         "type": "object",
         "properties": {
           "value": {
-            "type": "string"
+            "type": ["null", "string"]
           },
           "primary": {
-            "type": "boolean"
+            "type": ["null", "boolean"]
           },
           "label": {
-            "type": "string"
+            "type": ["null", "string"]
           }
         }
       }
@@ -102,13 +102,13 @@
         "type": "object",
         "properties": {
           "value": {
-            "type": "string"
+            "type": ["null", "string"]
           },
           "primary": {
-            "type": "boolean"
+            "type": ["null", "boolean"]
           },
           "label": {
-            "type": "string"
+            "type": ["null", "string"]
           }
         }
       }
