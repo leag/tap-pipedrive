@@ -1,0 +1,47 @@
+ci:
+  autofix_prs: true
+  autoupdate_schedule: weekly
+  autoupdate_commit_msg: 'chore: pre-commit autoupdate'
+  skip:
+  - uv-lock
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-json
+    exclude: |
+      (?x)^(
+        \.vscode/.*\.json
+      )$
+  - id: check-toml
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+
+- repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: 0.33.0
+  hooks:
+  - id: check-dependabot
+  - id: check-github-workflows
+  - id: check-meltano
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.11.11
+  hooks:
+  - id: ruff
+    args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+  - id: ruff-format
+
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.15.0
+  hooks:
+  - id: mypy
+    additional_dependencies:
+    - types-requests
+
+- repo: https://github.com/astral-sh/uv-pre-commit
+  rev: 0.7.8
+  hooks:
+  - id: uv-lock
+  - id: uv-sync
