@@ -1,0 +1,242 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "account_id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "add_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time"
+    },
+    "body_url": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "deleted_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "draft_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "from": {
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "email_address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "linked_person_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "linked_person_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "mail_message_party_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      }
+    },
+    "has_attachments_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "has_body_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "has_inline_attachments_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "has_real_attachments_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "mail_link_tracking_enabled_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "mail_thread_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "message_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time"
+    },
+    "read_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "sent_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "sent_from_pipedrive_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "smart_bcc_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "snippet": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "subject": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "synced_flag": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "to": {
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "email_address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "linked_person_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "linked_person_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "mail_message_party_id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      }
+    },
+    "update_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time"
+    },
+    "user_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    }
+  }
+}

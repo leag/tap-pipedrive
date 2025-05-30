@@ -1,0 +1,248 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "active_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "add_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "%Y-%m-%d %H:%M:%S"
+    },
+    "add_visible_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "bulk_edit_allowed": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "details_visible_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "edit_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "field_type": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "filtering_allowed": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "group_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "id_suffix": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "important_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "index_visible_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "is_subfield": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "json_column_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "key": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "last_updated_by_user_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "link": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "mandatory_flag": {
+      "type": [
+        "null",
+        "object",
+        "boolean",
+        "integer"
+      ],
+      "properties": {
+        "person_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "options": {
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": {
+        "type": [
+          "null",
+          "object"
+        ],
+        "properties": {
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "order_nr": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "parent_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "projects_detail_visible_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "searchable_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "show_in_pipelines": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "pipeline_ids": {
+          "type": [
+            "null",
+            "array"
+          ],
+          "items": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "show_in_all": {
+          "type": [
+            "null",
+            "boolean"
+          ]
+        }
+      }
+    },
+    "sortable_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "update_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "%Y-%m-%d %H:%M:%S"
+    },
+    "use_field": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "restriction_settings": {
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": {
+        "type": "null"
+      }
+    },
+    "created_by_user_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "user_restrictions": {
+      "type": "null"
+    },
+    "description": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

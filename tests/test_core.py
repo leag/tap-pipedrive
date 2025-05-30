@@ -2,21 +2,18 @@
 
 import datetime
 
-from singer_sdk.testing import get_tap_test_class
+from singer_sdk.testing import SuiteConfig, get_tap_test_class
 
 from tap_pipedrive.tap import TapPipedrive
 
 SAMPLE_CONFIG = {
-    "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-    # TODO: Initialize minimal tap config
+    "start_date": (
+        datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)
+    ).strftime("%Y-%m-%d %H:%M:%S"),
 }
 
-
-# Run standard built-in tap tests from the SDK:
 TestTapPipedrive = get_tap_test_class(
     tap_class=TapPipedrive,
     config=SAMPLE_CONFIG,
+    suite_config=SuiteConfig(ignore_no_records=True, max_records_limit=50),
 )
-
-
-# TODO: Create additional tests as appropriate for your tap.

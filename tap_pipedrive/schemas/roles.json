@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "description": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "active_flag": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "assignment_count": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "level": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "parent_role_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "sub_role_count": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

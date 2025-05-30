@@ -1,0 +1,199 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "version": {
+      "type": "integer"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "add_time": {
+      "type": "string"
+    },
+    "all_messages_sent_flag": {
+      "type": "integer"
+    },
+    "archived_flag": {
+      "type": "integer"
+    },
+    "deal_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "deal_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deleted_flag": {
+      "type": "integer"
+    },
+    "drafts_parties": {
+      "type": "array"
+    },
+    "external_deleted_flag": {
+      "type": "integer"
+    },
+    "first_message_timestamp": {
+      "type": "string"
+    },
+    "first_message_to_me_flag": {
+      "type": "integer"
+    },
+    "folders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "has_attachments_flag": {
+      "type": "integer"
+    },
+    "has_draft_flag": {
+      "type": "integer"
+    },
+    "has_inline_attachments_flag": {
+      "type": "integer"
+    },
+    "has_real_attachments_flag": {
+      "type": "integer"
+    },
+    "has_sent_flag": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "last_message_received_timestamp": {
+      "type": "string"
+    },
+    "last_message_sent_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_message_timestamp": {
+      "type": "string"
+    },
+    "mail_link_tracking_enabled_flag": {
+      "type": "integer"
+    },
+    "parties": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "email_address": {
+                "type": "string"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "latest_sent": {
+                "type": "boolean"
+              },
+              "linked_organization_id": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "linked_person_id": {
+                "type": "integer"
+              },
+              "linked_person_name": {
+                "type": "string"
+              },
+              "mail_message_party_id": {
+                "type": "integer"
+              },
+              "message_time": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "email_address": {
+                "type": "string"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "latest_sent": {
+                "type": "boolean"
+              },
+              "linked_organization_id": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "linked_person_id": {
+                "type": "integer"
+              },
+              "linked_person_name": {
+                "type": "string"
+              },
+              "mail_message_party_id": {
+                "type": "integer"
+              },
+              "message_time": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "shared_flag": {
+      "type": "integer"
+    },
+    "smart_bcc_flag": {
+      "type": "integer"
+    },
+    "snippet": {
+      "type": "string"
+    },
+    "snippet_draft": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "snippet_sent": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "synced_flag": {
+      "type": "integer"
+    },
+    "update_time": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "integer"
+    }
+  }
+}

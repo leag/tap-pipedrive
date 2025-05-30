@@ -1,0 +1,154 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "add_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "creator_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "expected_close_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "is_archived": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "label_ids": {
+      "type": [
+        "null",
+        "array"
+      ]
+    },
+    "next_activity_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "organization_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "owner_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "person_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "source_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "title": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "update_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "value": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "null",
+            "integer"
+          ]
+        },
+        "currency": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "was_seen": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "origin": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "archive_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "origin_id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "channel_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "cc_email": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "visible_to": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}

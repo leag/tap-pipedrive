@@ -1,0 +1,452 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "properties": {
+    "active": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "activities_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "add_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "cc_email": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "close_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "creator_user_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "deleted": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "done_activities_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "email_messages_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "expected_close_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "files_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "first_won_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "followers_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "formatted_value": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "formatted_weighted_value": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "label": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "last_activity_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "last_activity_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "last_incoming_mail_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "last_outgoing_mail_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "lost_reason": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "lost_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "next_activity_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "next_activity_duration": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "next_activity_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "next_activity_note": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "next_activity_subject": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "next_activity_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "next_activity_type": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "notes_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "org_hidden": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "org_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "org_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "owner_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "participants_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "person_hidden": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "person_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "person_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "pipeline_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "probability": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "products_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "rotten_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "stage_change_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "stage_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "stage_order_nr": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "status": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "title": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "undone_activities_count": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "update_time": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time"
+    },
+    "user_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "value": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "visible_to": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "weighted_value": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "weighted_value_currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "won_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "mrr": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "channel_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "is_archived": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "origin_id": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "arr_currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "origin": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "local_close_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "sequence_enrollment": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "mrr_currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "acv": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "archive_time": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "acv_currency": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "local_won_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "arr": {
+      "type": [
+        "null",
+        "number"
+      ]
+    },
+    "local_lost_date": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date"
+    }
+  }
+}
