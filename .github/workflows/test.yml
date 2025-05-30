@@ -26,6 +26,7 @@ on:
 
 env:
   FORCE_COLOR: 1
+  TAP_PIPEDRIVE_API_TOKEN: ${{ secrets.TAP_PIPEDRIVE_API_TOKEN }}
 
 jobs:
   pytest:
