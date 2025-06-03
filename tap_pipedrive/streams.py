@@ -50,8 +50,8 @@ class DealFieldsStream(PipedriveStream):
 
     name = "deal_fields"
     path = "v1/dealFields"
-    schema_filepath = SCHEMAS_DIR / "deal_fields.json"
     primary_keys = ("key",)
+    schema_filepath = SCHEMAS_DIR / "deal_fields.json"
 
 
 class GoalsStream(PipedriveStream):
@@ -184,6 +184,7 @@ class ActivityFieldsStream(PipedriveStream):
 
     name = "activity_fields"
     path = "v1/activityFields"
+    primary_keys = ("key",)
     schema_filepath = SCHEMAS_DIR / "activity_fields.json"
 
 
@@ -248,6 +249,7 @@ class OrganizationFieldsStream(PipedriveStream):
 
     name = "organization_fields"
     path = "v1/organizationFields"
+    primary_keys = ("key",)
     schema_filepath = SCHEMAS_DIR / "organization_fields.json"
 
 
@@ -287,6 +289,7 @@ class PersonFieldsStream(PipedriveStream):
 
     name = "person_fields"
     path = "v1/personFields"
+    primary_keys = ("key",)
     schema_filepath = SCHEMAS_DIR / "person_fields.json"
 
 
@@ -341,8 +344,8 @@ class ProductFieldsStream(PipedriveStream):
 
     name = "product_fields"
     path = "v1/productFields"
-    schema_filepath = SCHEMAS_DIR / "product_fields.json"
     primary_keys = ("key",)
+    schema_filepath = SCHEMAS_DIR / "product_fields.json"
 
 
 class RolesStream(PipedriveStream):
