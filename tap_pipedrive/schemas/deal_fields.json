@@ -115,18 +115,8 @@
     "mandatory_flag": {
       "type": [
         "null",
-        "object",
-        "boolean",
-        "integer"
-      ],
-      "properties": {
-        "person_id": {
-          "type": [
-            "null",
-            "string"
-          ]
-        }
-      }
+        "boolean"
+      ]
     },
     "name": {
       "type": [
