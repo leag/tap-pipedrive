@@ -358,7 +358,7 @@
     "channel_id": {
       "type": [
         "null",
-        "integer"
+        "string"
       ]
     },
     "is_archived": {

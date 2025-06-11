@@ -135,7 +135,7 @@
     "channel_id": {
       "type": [
         "null",
-        "integer"
+        "string"
       ]
     },
     "cc_email": {
