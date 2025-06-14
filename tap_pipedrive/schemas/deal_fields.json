@@ -135,8 +135,17 @@
           "object"
         ],
         "properties": {
-          "additionalProperties": {
-            "type": "boolean"
+          "id": {
+            "type": [
+              "null",
+              "integer"
+            ]
+          },
+          "label": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       }
