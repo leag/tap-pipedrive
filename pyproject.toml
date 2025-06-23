@@ -22,7 +22,7 @@ license = "Apache-2.0"
 license-files = [ "LICENSE" ]
 requires-python = ">=3.9"
 dependencies = [
-    "singer-sdk~=0.46.4",
+    "singer-sdk~=0.47.3",
     "requests~=2.32.3",
 ]
 
