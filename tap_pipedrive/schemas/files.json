@@ -30,7 +30,7 @@
     "cid": {
       "type": [
         "null",
-        "integer"
+        "string"
       ]
     },
     "deal_id": {
