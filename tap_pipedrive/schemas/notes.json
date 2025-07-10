@@ -62,8 +62,9 @@
     "lead_id": {
       "type": [
         "null",
-        "integer"
-      ]
+        "string"
+      ],
+      "format": "uuid"
     },
     "org_id": {
       "type": [

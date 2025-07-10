@@ -78,8 +78,9 @@
     "lead_id": {
       "type": [
         "null",
-        "integer"
-      ]
+        "string"
+      ],
+      "format": "uuid"
     },
     "lead_name": {
       "type": [

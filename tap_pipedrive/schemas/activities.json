@@ -227,7 +227,8 @@
       "type": [
         "null",
         "string"
-      ]
+      ],
+      "format": "uuid"
     },
     "location": {
       "type": [
