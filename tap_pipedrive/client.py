@@ -74,7 +74,10 @@ class PipedriveStream(RESTStream):
         """
 
         def _backoff_from_headers(retriable_api_error: RetriableAPIError) -> int:
-            response_headers = retriable_api_error.response.headers
-            return int(response_headers.get("X-RateLimit-Reset", 0))
+            try:
+                response_headers = retriable_api_error.response.headers
+                return int(response_headers.get("X-RateLimit-Reset", 0))
+            except (AttributeError, ValueError, TypeError):
+                return 0
 
         return self.backoff_runtime(value=_backoff_from_headers)
