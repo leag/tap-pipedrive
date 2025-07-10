@@ -28,6 +28,12 @@ class TapPipedrive(Tap):
             description="The earliest record date to sync",
             required=True,
         ),
+        th.Property(
+            "page_size",
+            th.IntegerType(minimum=1, maximum=100),
+            default=50,
+            description="Number of records to return per API request (1-100)",
+        ),
     ).to_dict()
 
     def discover_streams(self) -> list[streams.PipedriveStream]:
