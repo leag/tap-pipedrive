@@ -261,6 +261,12 @@ class OrganizationsStream(PipedriveStream):
             params["cursor"] = next_page_token
         return params
 
+    def post_process(self, record: dict) -> dict:
+        """Move custom_fields to the top level."""
+        if "custom_fields" in record:
+            record.update(record.pop("custom_fields"))
+        return record
+
 
 class OrganizationFieldsStream(PipedriveStream):
     """Pipedrive organization_fields stream."""
@@ -316,6 +322,12 @@ class PersonsStream(PipedriveStream):
         if next_page_token is not None:
             params["cursor"] = next_page_token
         return params
+
+    def post_process(self, record: dict) -> dict:
+        """Move custom_fields to the top level."""
+        if "custom_fields" in record:
+            record.update(record.pop("custom_fields"))
+        return record
 
 
 class PersonFieldsStream(PipedriveStream):

@@ -36,12 +36,6 @@
         "integer"
       ]
     },
-    "custom_fields": {
-      "type": [
-        "null",
-        "object"
-      ]
-    },
     "owner_id": {
       "type": [
         "null",
