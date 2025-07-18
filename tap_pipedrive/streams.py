@@ -10,9 +10,9 @@ from singer_sdk.authenticators import APIKeyAuthenticator
 from tap_pipedrive.client import PipedriveStream
 
 if t.TYPE_CHECKING:
+    from singer_sdk.helpers import types
     from singer_sdk.helpers.types import Context
     from singer_sdk.streams.rest import _TToken
-    from singer_sdk.helpers import types
 
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
