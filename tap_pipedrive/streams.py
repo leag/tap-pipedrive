@@ -5,6 +5,8 @@ from __future__ import annotations
 import typing as t
 from importlib import resources
 
+from singer_sdk.authenticators import APIKeyAuthenticator
+
 from tap_pipedrive.client import PipedriveStream
 
 if t.TYPE_CHECKING:
@@ -225,10 +227,22 @@ class OrganizationsStream(PipedriveStream):
     """Pipedrive organizations stream."""
 
     name = "organizations"
-    path = "v1/recents"
+    path = "v2/organizations"
     replication_key = "update_time"
-    records_jsonpath = "$.data[*].data[*]"
+    records_jsonpath = "$.data[*]"
     schema_filepath = SCHEMAS_DIR / "organizations.json"
+    url_base = "https://preyinc2.pipedrive.com/api/"
+    next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+
+    @property
+    def authenticator(self) -> APIKeyAuthenticator:
+        """Return a new authenticator object with header authentication for v2 API."""
+        return APIKeyAuthenticator.create_for_stream(
+            self,
+            key="x-api-token",
+            value=self.config.get("api_token", ""),
+            location="header",
+        )
 
     def get_url_params(
         self,
@@ -236,11 +250,15 @@ class OrganizationsStream(PipedriveStream):
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
         """Return URL parameters for the request."""
-        params: dict = super().get_url_params(context, next_page_token)
+        params: dict = {}
+        params["limit"] = self.config.get("page_size", 500)
+
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
-            params["since_timestamp"] = starting_date.strftime("%Y-%m-%d %H:%M:%S")
-        params["items"] = "organization"
+            params["updated_since"] = starting_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        if next_page_token is not None:
+            params["cursor"] = next_page_token
         return params
 
 
@@ -265,10 +283,22 @@ class PersonsStream(PipedriveStream):
     """Pipedrive persons stream."""
 
     name = "persons"
-    path = "v1/recents"
+    path = "v2/persons"
     replication_key = "update_time"
-    records_jsonpath = "$.data[*].data[*]"
+    records_jsonpath = "$.data[*]"
     schema_filepath = SCHEMAS_DIR / "persons.json"
+    url_base = "https://preyinc2.pipedrive.com/api/"
+    next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+
+    @property
+    def authenticator(self) -> APIKeyAuthenticator:
+        """Return a new authenticator object with header authentication for v2 API."""
+        return APIKeyAuthenticator.create_for_stream(
+            self,
+            key="x-api-token",
+            value=self.config.get("api_token", ""),
+            location="header",
+        )
 
     def get_url_params(
         self,
@@ -276,11 +306,15 @@ class PersonsStream(PipedriveStream):
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
         """Return URL parameters for the request."""
-        params: dict = super().get_url_params(context, next_page_token)
+        params: dict = {}
+        params["limit"] = self.config.get("page_size", 100)  # v2 supports up to 500
+
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
-            params["since_timestamp"] = starting_date.strftime("%Y-%m-%d %H:%M:%S")
-        params["items"] = "person"
+            params["updated_since"] = starting_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        if next_page_token is not None:
+            params["cursor"] = next_page_token
         return params
 
 

@@ -30,9 +30,9 @@ class TapPipedrive(Tap):
         ),
         th.Property(
             "page_size",
-            th.IntegerType(minimum=1, maximum=100),
+            th.IntegerType(minimum=1, maximum=500),
             default=50,
-            description="Number of records to return per API request (1-100)",
+            description="Number of records to return per API request (1-500)",
         ),
     ).to_dict()
 

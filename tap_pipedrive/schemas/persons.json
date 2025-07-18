@@ -1,161 +1,10 @@
 {
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": true,
+  "type": [
+    "null",
+    "object"
+  ],
   "properties": {
-    "active_flag": {
-      "type": [
-        "null",
-        "boolean"
-      ]
-    },
-    "activities_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "add_time": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "cc_email": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "closed_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "company_id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "delete_time": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "done_activities_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "email": {
-      "type": [
-        "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "properties": {
-          "label": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "primary": {
-            "type": [
-              "null",
-              "boolean"
-            ]
-          },
-          "value": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        }
-      }
-    },
-    "email_messages_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "files_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "first_char": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "first_name": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "followers_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
     "id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "label": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "last_activity_date": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "last_activity_id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "last_incoming_mail_time": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "last_name": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "last_outgoing_mail_time": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "lost_deals_count": {
       "type": [
         "null",
         "integer"
@@ -167,211 +16,24 @@
         "string"
       ]
     },
-    "next_activity_date": {
+    "first_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "last_name": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "add_time": {
       "type": [
         "null",
         "string"
       ],
-      "format": "date"
-    },
-    "next_activity_id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "next_activity_time": {
-      "type": [
-        "null",
-        "string"
-      ],
-      "format": "time"
-    },
-    "notes_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "open_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "org_id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "org_name": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "owner_id": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "owner_name": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "participant_closed_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "participant_open_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "phone": {
-      "type": [
-        "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "properties": {
-          "label": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "primary": {
-            "type": [
-              "null",
-              "boolean"
-            ]
-          },
-          "value": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        }
-      }
-    },
-    "picture_128_url": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "picture_id": {
-      "type": [
-        "null",
-        "object"
-      ],
-      "properties": {
-        "active_flag": {
-          "type": [
-            "null",
-            "boolean"
-          ]
-        },
-        "add_time": {
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        "added_by_user_id": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        },
-        "item_id": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        },
-        "item_type": {
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        "pictures": {
-          "type": [
-            "null",
-            "object"
-          ],
-          "properties": {
-            "128": {
-              "type": [
-                "null",
-                "string"
-              ]
-            },
-            "512": {
-              "type": [
-                "null",
-                "string"
-              ]
-            }
-          }
-        },
-        "update_time": {
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        "value": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        }
-      }
-    },
-    "related_closed_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "related_lost_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "related_open_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "related_won_deals_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
-    },
-    "undone_activities_count": {
-      "type": [
-        "null",
-        "integer"
-      ]
+      "format": "date-time"
     },
     "update_time": {
       "type": [
@@ -383,67 +45,40 @@
     "visible_to": {
       "type": [
         "null",
-        "string"
+        "integer"
       ]
     },
-    "won_deals_count": {
+    "custom_fields": {
+      "type": [
+        "null",
+        "object"
+      ]
+    },
+    "owner_id": {
       "type": [
         "null",
         "integer"
       ]
     },
-    "notes": {
+    "org_id": {
       "type": [
         "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "properties": {
-          "content": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "id": {
-            "type": [
-              "null",
-              "integer"
-            ]
-          },
-          "pinned_to_top_flag": {
-            "type": [
-              "null",
-              "boolean"
-            ]
-          },
-          "public_flag": {
-            "type": [
-              "null",
-              "boolean"
-            ]
-          },
-          "update_time": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "format": "date-time"
-          }
-        }
-      }
-    },
-    "postal_address_long": {
-      "type": [
-        "null",
-        "string"
+        "integer"
       ]
     },
-    "im": {
+    "is_deleted": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "picture_id": {
+      "type": [
+        "null",
+        "integer"
+      ]
+    },
+    "phones": {
       "type": [
         "null",
         "array"
@@ -460,107 +95,22 @@
               "string"
             ]
           },
-          "primary": {
-            "type": [
-              "null",
-              "boolean"
-            ]
-          },
           "value": {
             "type": [
               "null",
               "string"
             ]
+          },
+          "primary": {
+            "type": [
+              "null",
+              "boolean"
+            ]
           }
         }
       }
     },
-    "postal_address_locality": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_lat": {
-      "type": [
-        "null",
-        "number"
-      ]
-    },
-    "postal_address_formatted_address": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "job_title": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "birthday": {
-      "type": [
-        "null",
-        "string"
-      ],
-      "format": "date"
-    },
-    "postal_address_country": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_subpremise": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_street_number": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_postal_code": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_route": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_sublocality": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_admin_area_level_2": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address_admin_area_level_1": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "postal_address": {
-      "type": [
-        "null",
-        "string"
-      ]
-    },
-    "label_ids": {
+    "emails": {
       "type": [
         "null",
         "array"
@@ -568,8 +118,28 @@
       "items": {
         "type": [
           "null",
-          "integer"
-        ]
+          "object"
+        ],
+        "properties": {
+          "label": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "value": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "primary": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          }
+        }
       }
     }
   }
