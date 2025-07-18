@@ -12,6 +12,7 @@ from tap_pipedrive.client import PipedriveStream
 if t.TYPE_CHECKING:
     from singer_sdk.helpers.types import Context
     from singer_sdk.streams.rest import _TToken
+    from singer_sdk.helpers import types
 
 SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
@@ -261,11 +262,15 @@ class OrganizationsStream(PipedriveStream):
             params["cursor"] = next_page_token
         return params
 
-    def post_process(self, record: dict) -> dict:
+    def post_process(
+        self,
+        row: types.Record,
+        context: types.Context | None = None,  # noqa: ARG002
+    ) -> dict | None:
         """Move custom_fields to the top level."""
-        if "custom_fields" in record:
-            record.update(record.pop("custom_fields"))
-        return record
+        if "custom_fields" in row:
+            row.update(row.pop("custom_fields"))
+        return row
 
 
 class OrganizationFieldsStream(PipedriveStream):
@@ -323,11 +328,16 @@ class PersonsStream(PipedriveStream):
             params["cursor"] = next_page_token
         return params
 
-    def post_process(self, record: dict) -> dict:
+    def post_process(
+        self,
+        row: types.Record,
+        context: types.Context | None = None,  # noqa: ARG002
+    ) -> dict | None:
         """Move custom_fields to the top level."""
-        if "custom_fields" in record:
-            record.update(record.pop("custom_fields"))
-        return record
+        if "custom_fields" in row:
+            row.update(row.pop("custom_fields"))
+        return row
+
 
 
 class PersonFieldsStream(PipedriveStream):
