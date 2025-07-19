@@ -18,13 +18,29 @@ SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
 
 class DealsStream(PipedriveStream):
-    """Pipedrive deals stream."""
+    """Pipedrive deals stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Deals
+    """
 
     name = "deals"
-    path = "v1/recents"
+    path = "v2/deals"
     replication_key = "update_time"
-    records_jsonpath = "$.data[*].data[*]"
+    records_jsonpath = "$.data[*]"
     schema_filepath = SCHEMAS_DIR / "deals.json"
+    url_base = "https://preyinc2.pipedrive.com/api/"
+    next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+    is_sorted = True
+
+    @property
+    def authenticator(self) -> APIKeyAuthenticator:
+        """Return a new authenticator object with header authentication for v2 API."""
+        return APIKeyAuthenticator.create_for_stream(
+            self,
+            key="x-api-token",
+            value=self.config.get("api_token", ""),
+            location="header",
+        )
 
     def get_url_params(
         self,
@@ -32,12 +48,26 @@ class DealsStream(PipedriveStream):
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
         """Return URL parameters for the request."""
-        params: dict = super().get_url_params(context, next_page_token)
+        params: dict = {}
+        params["limit"] = self.config.get("page_size", 500)
+        params["sort_by"] = "update_time"
+
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
-            params["since_timestamp"] = starting_date.strftime("%Y-%m-%d %H:%M:%S")
-        params["items"] = "deal"
+            params["updated_since"] = starting_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if next_page_token is not None:
+            params["cursor"] = next_page_token
         return params
+
+    def post_process(
+        self,
+        row: types.Record,
+        context: types.Context | None = None,  # noqa: ARG002
+    ) -> dict | None:
+        """Move custom_fields to the top level."""
+        if "custom_fields" in row:
+            row.update(row.pop("custom_fields"))
+        return row
 
     def get_child_context(
         self,
@@ -49,7 +79,10 @@ class DealsStream(PipedriveStream):
 
 
 class DealFieldsStream(PipedriveStream):
-    """Pipedrive deal_fields stream."""
+    """Pipedrive deal_fields stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/DealFields
+    """
 
     name = "deal_fields"
     path = "v1/dealFields"
@@ -58,7 +91,10 @@ class DealFieldsStream(PipedriveStream):
 
 
 class GoalsStream(PipedriveStream):
-    """Pipedrive goals stream."""
+    """Pipedrive goals stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Goals
+    """
 
     name = "goals"
     path = "v1/goals/find"
@@ -67,7 +103,10 @@ class GoalsStream(PipedriveStream):
 
 
 class FilesStream(PipedriveStream):
-    """Pipedrive files stream."""
+    """Pipedrive files stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Files
+    """
 
     name = "files"
     path = "v1/recents"
@@ -90,7 +129,10 @@ class FilesStream(PipedriveStream):
 
 
 class FiltersStream(PipedriveStream):
-    """Pipedrive filters stream."""
+    """Pipedrive filters stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Filters
+    """
 
     name = "filters"
     path = "v1/filters"
@@ -98,7 +140,10 @@ class FiltersStream(PipedriveStream):
 
 
 class LeadLabelsStream(PipedriveStream):
-    """Pipedrive lead_labels stream."""
+    """Pipedrive lead_labels stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/LeadLabels
+    """
 
     name = "lead_labels"
     path = "v1/leadLabels"
@@ -106,7 +151,10 @@ class LeadLabelsStream(PipedriveStream):
 
 
 class LeadsStream(PipedriveStream):
-    """Pipedrive leads stream."""
+    """Pipedrive leads stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Leads
+    """
 
     name = "leads"
     path = "v1/leads"
@@ -114,7 +162,10 @@ class LeadsStream(PipedriveStream):
 
 
 class NotesStream(PipedriveStream):
-    """Pipedrive notes stream."""
+    """Pipedrive notes stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Notes
+    """
 
     name = "notes"
     path = "v1/recents"
@@ -137,13 +188,29 @@ class NotesStream(PipedriveStream):
 
 
 class ActivitiesStream(PipedriveStream):
-    """Pipedrive activities stream."""
+    """Pipedrive activities stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Activities
+    """
 
     name = "activities"
-    path = "v1/recents"
+    path = "v2/activities"
     replication_key = "update_time"
-    records_jsonpath = "$.data[*].data[*]"
+    records_jsonpath = "$.data[*]"
     schema_filepath = SCHEMAS_DIR / "activities.json"
+    url_base = "https://preyinc2.pipedrive.com/api/"
+    next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+    is_sorted = True
+
+    @property
+    def authenticator(self) -> APIKeyAuthenticator:
+        """Return a new authenticator object with header authentication for v2 API."""
+        return APIKeyAuthenticator.create_for_stream(
+            self,
+            key="x-api-token",
+            value=self.config.get("api_token", ""),
+            location="header",
+        )
 
     def get_url_params(
         self,
@@ -151,16 +218,23 @@ class ActivitiesStream(PipedriveStream):
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
         """Return URL parameters for the request."""
-        params: dict = super().get_url_params(context, next_page_token)
+        params: dict = {}
+        params["limit"] = self.config.get("page_size", 500)
+        params["sort_by"] = "update_time"
+
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
-            params["since_timestamp"] = starting_date.strftime("%Y-%m-%d %H:%M:%S")
-        params["items"] = "activity"
+            params["updated_since"] = starting_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+        if next_page_token is not None:
+            params["cursor"] = next_page_token
         return params
 
 
 class ActivityTypesStream(PipedriveStream):
-    """Pipedrive activity_types stream."""
+    """Pipedrive activity_types stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/ActivityTypes
+    """
 
     name = "activity_types"
     path = "v1/recents"
@@ -183,7 +257,10 @@ class ActivityTypesStream(PipedriveStream):
 
 
 class ActivityFieldsStream(PipedriveStream):
-    """Pipedrive activity_fields stream."""
+    """Pipedrive activity_fields stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/ActivityFields
+    """
 
     name = "activity_fields"
     path = "v1/activityFields"
@@ -192,7 +269,10 @@ class ActivityFieldsStream(PipedriveStream):
 
 
 class CurrenciesStream(PipedriveStream):
-    """Pipedrive currencies stream."""
+    """Pipedrive currencies stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Currencies
+    """
 
     name = "currencies"
     path = "v1/currencies"
@@ -200,7 +280,10 @@ class CurrenciesStream(PipedriveStream):
 
 
 class MailThreadsStream(PipedriveStream):
-    """Pipedrive mailThreads stream."""
+    """Pipedrive mailThreads stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Mailbox
+    """
 
     name = "mailThreads"
     path = "v1/mailbox/mailThreads"
@@ -216,7 +299,10 @@ class MailThreadsStream(PipedriveStream):
 
 
 class MailStream(PipedriveStream):
-    """Pipedrive mail stream."""
+    """Pipedrive mail stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Mailbox
+    """
 
     name = "mail"
     path = "v1/mailbox/mailThreads/{thread_id}/mailMessages"
@@ -225,7 +311,10 @@ class MailStream(PipedriveStream):
 
 
 class OrganizationsStream(PipedriveStream):
-    """Pipedrive organizations stream."""
+    """Pipedrive organizations stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Organizations
+    """
 
     name = "organizations"
     path = "v2/organizations"
@@ -234,6 +323,7 @@ class OrganizationsStream(PipedriveStream):
     schema_filepath = SCHEMAS_DIR / "organizations.json"
     url_base = "https://preyinc2.pipedrive.com/api/"
     next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+    is_sorted = True
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:
@@ -253,11 +343,11 @@ class OrganizationsStream(PipedriveStream):
         """Return URL parameters for the request."""
         params: dict = {}
         params["limit"] = self.config.get("page_size", 500)
+        params["sort_by"] = "update_time"
 
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
             params["updated_since"] = starting_date.strftime("%Y-%m-%dT%H:%M:%SZ")
-
         if next_page_token is not None:
             params["cursor"] = next_page_token
         return params
@@ -274,7 +364,10 @@ class OrganizationsStream(PipedriveStream):
 
 
 class OrganizationFieldsStream(PipedriveStream):
-    """Pipedrive organization_fields stream."""
+    """Pipedrive organization_fields stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/OrganizationFields
+    """
 
     name = "organization_fields"
     path = "v1/organizationFields"
@@ -283,7 +376,10 @@ class OrganizationFieldsStream(PipedriveStream):
 
 
 class PermissionSetsStream(PipedriveStream):
-    """Pipedrive permission_sets stream."""
+    """Pipedrive permission_sets stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/PermissionSets
+    """
 
     name = "permission_sets"
     path = "v1/permissionSets"
@@ -291,7 +387,10 @@ class PermissionSetsStream(PipedriveStream):
 
 
 class PersonsStream(PipedriveStream):
-    """Pipedrive persons stream."""
+    """Pipedrive persons stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Persons
+    """
 
     name = "persons"
     path = "v2/persons"
@@ -341,7 +440,10 @@ class PersonsStream(PipedriveStream):
 
 
 class PersonFieldsStream(PipedriveStream):
-    """Pipedrive person_fields stream."""
+    """Pipedrive person_fields stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/PersonFields
+    """
 
     name = "person_fields"
     path = "v1/personFields"
@@ -350,7 +452,10 @@ class PersonFieldsStream(PipedriveStream):
 
 
 class PipelinesStream(PipedriveStream):
-    """Pipedrive pipelines stream."""
+    """Pipedrive pipelines stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Pipelines
+    """
 
     name = "pipelines"
     path = "v1/recents"
@@ -373,7 +478,10 @@ class PipelinesStream(PipedriveStream):
 
 
 class ProductsStream(PipedriveStream):
-    """Pipedrive products stream."""
+    """Pipedrive products stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Products
+    """
 
     name = "products"
     path = "v1/recents"
@@ -396,7 +504,10 @@ class ProductsStream(PipedriveStream):
 
 
 class ProductFieldsStream(PipedriveStream):
-    """Pipedrive product_fields stream."""
+    """Pipedrive product_fields stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/ProductFields
+    """
 
     name = "product_fields"
     path = "v1/productFields"
@@ -405,7 +516,10 @@ class ProductFieldsStream(PipedriveStream):
 
 
 class RolesStream(PipedriveStream):
-    """Pipedrive roles stream."""
+    """Pipedrive roles stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Roles
+    """
 
     name = "roles"
     path = "v1/roles"
@@ -413,7 +527,10 @@ class RolesStream(PipedriveStream):
 
 
 class StagesStream(PipedriveStream):
-    """Pipedrive stages stream."""
+    """Pipedrive stages stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Stages
+    """
 
     name = "stages"
     path = "v1/stages"
@@ -421,7 +538,10 @@ class StagesStream(PipedriveStream):
 
 
 class UsersStream(PipedriveStream):
-    """Pipedrive users stream."""
+    """Pipedrive users stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Users
+    """
 
     name = "users"
     path = "v1/recents"
@@ -444,7 +564,10 @@ class UsersStream(PipedriveStream):
 
 
 class DealProductsStream(PipedriveStream):
-    """Pipedrive deal_products stream."""
+    """Pipedrive deal_products stream.
+
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Deals
+    """
 
     name = "deal_products"
     path = "v1/deals/{deal_id}/products"
