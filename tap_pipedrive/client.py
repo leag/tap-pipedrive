@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing as t
 from importlib import resources
 
+import requests_cache
 from singer_sdk.authenticators import APIKeyAuthenticator
 from singer_sdk.streams import RESTStream
 
@@ -22,6 +23,23 @@ class PipedriveStream(RESTStream):
     primary_keys = ("id",)
     records_jsonpath = "$.data[*]"
     url_base = "https://api.pipedrive.com/"
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -> None:
+        """Initialize the stream with caching enabled."""
+        super().__init__(*args, **kwargs)
+        # Enable HTTP caching with a 1-hour expiration for this session
+        self._session = requests_cache.CachedSession(
+            cache_name="pipedrive_cache",
+            backend="sqlite",
+            expire_after=3600,  # 1 hour
+            allowable_methods=["GET"],  # Only cache GET requests
+            stale_if_error=True,  # Return stale cache if API error
+        )
+
+    @property
+    def requests_session(self) -> requests_cache.CachedSession:
+        """Get the cached HTTP session."""
+        return self._session
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:

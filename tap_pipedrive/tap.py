@@ -68,7 +68,7 @@ class TapPipedrive(Tap):
             # streams.RolesStream(self),
             # streams.StagesStream(self),
             # streams.UsersStream(self),
-            # streams.DealProductsStream(self),
+            streams.DealProductsStream(self),
         ]
 
 

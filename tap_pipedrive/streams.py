@@ -69,14 +69,6 @@ class DealsStream(PipedriveStream):
             row.update(row.pop("custom_fields"))
         return row
 
-    def get_child_context(
-        self,
-        record: dict,
-        context: Context | None = None,  # noqa: ARG002
-    ) -> Context:
-        """Return the context for child streams."""
-        return {"deal_id": record["id"]}
-
 
 class DealFieldsStream(PipedriveStream):
     """Pipedrive deal_fields stream.
@@ -438,7 +430,6 @@ class PersonsStream(PipedriveStream):
         return row
 
 
-
 class PersonFieldsStream(PipedriveStream):
     """Pipedrive person_fields stream.
 
@@ -566,10 +557,67 @@ class UsersStream(PipedriveStream):
 class DealProductsStream(PipedriveStream):
     """Pipedrive deal_products stream.
 
-    API Documentation: https://developers.pipedrive.com/docs/api/v1/Deals
+    API Documentation: https://developers.pipedrive.com/docs/api/v1/Deals#getDealsProducts
     """
 
     name = "deal_products"
-    path = "v1/deals/{deal_id}/products"
-    parent_stream_type = DealsStream
+    path = "v2/deals/products"
     schema_filepath = SCHEMAS_DIR / "deal_products.json"
+    url_base = "https://preyinc2.pipedrive.com/api/"
+    next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
+    records_jsonpath = "$.data[*]"
+    MAX_DEAL_IDS_PER_REQUEST = 100
+
+    @property
+    def partitions(self) -> list[dict] | None:
+        """Return a list of partitions."""
+        for stream in self._tap.streams.values():
+            if stream.name == "deals":
+                deals_stream = stream
+                break
+        if not deals_stream:
+            return None
+
+        deal_ids = [deal_record["id"] for deal_record in deals_stream.get_records(None)]
+
+        if not deal_ids:
+            return None
+
+        partitions = []
+        current_batch = []
+
+        for deal_id in deal_ids:
+            current_batch.append(deal_id)
+            if len(current_batch) >= self.MAX_DEAL_IDS_PER_REQUEST:
+                partitions.append({"deal_ids": current_batch.copy()})
+                current_batch = []
+
+        if current_batch:
+            partitions.append({"deal_ids": current_batch})
+
+        return partitions
+
+    @property
+    def authenticator(self) -> APIKeyAuthenticator:
+        """Return a new authenticator object with header authentication for v2 API."""
+        return APIKeyAuthenticator.create_for_stream(
+            self,
+            key="x-api-token",
+            value=self.config.get("api_token", ""),
+            location="header",
+        )
+
+    def get_url_params(
+        self,
+        context: Context | None,
+        next_page_token: _TToken | None,
+    ) -> dict[str, t.Any]:
+        """Return URL parameters for the request."""
+        params: dict = {}
+        params["limit"] = self.config.get("page_size", 500)
+        params["sort_by"] = "update_time"
+        if context and "deal_ids" in context:
+            params["deal_ids"] = str(context["deal_ids"])
+        if next_page_token is not None:
+            params["cursor"] = next_page_token
+        return params
