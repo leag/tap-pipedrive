@@ -138,7 +138,9 @@
           "id": {
             "type": [
               "null",
-              "integer"
+              "integer",
+              "boolean",
+              "string"
             ]
           },
           "label": {

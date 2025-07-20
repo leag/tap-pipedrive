@@ -8,7 +8,7 @@ from tap_pipedrive.tap import TapPipedrive
 
 SAMPLE_CONFIG = {
     "start_date": (
-        datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)
+        datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=30)
     ).strftime("%Y-%m-%d %H:%M:%S"),
 }
 

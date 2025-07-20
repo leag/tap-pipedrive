@@ -111,7 +111,7 @@
     "channel": {
       "type": [
         "null",
-        "string"
+        "integer"
       ]
     },
     "origin": {
