@@ -222,7 +222,8 @@
     },
     "priority": {
       "type": [
-        "null"
+        "null",
+        "integer"
       ]
     },
     "note": {
