@@ -169,18 +169,6 @@
         "string"
       ]
     },
-    "restriction_settings": {
-      "type": [
-        "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "string"
-        ]
-      }
-    },
     "group_id": {
       "type": [
         "null",

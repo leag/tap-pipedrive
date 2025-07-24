@@ -221,18 +221,6 @@
         "string"
       ]
     },
-    "restriction_settings": {
-      "type": [
-        "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "string"
-        ]
-      }
-    },
     "created_by_user_id": {
       "type": [
         "null",
