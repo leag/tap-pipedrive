@@ -181,7 +181,8 @@
     },
     "channel_id": {
       "type": [
-        "null"
+        "null",
+        "string"
       ]
     },
     "acv": {
