@@ -1,51 +1,50 @@
 {
   "type": [
-    "object",
-    "null"
+    "null",
+    "object"
   ],
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": true,
   "properties": {
     "type": {
       "type": [
-        "object",
-        "null"
+        "null",
+        "object"
       ],
       "additionalProperties": true,
       "properties": {
         "name": {
           "type": [
-            "string",
-            "null"
+            "null",
+            "string"
           ]
         },
         "params": {
           "type": [
-            "object",
-            "null"
+            "null",
+            "object"
           ],
           "properties": {
             "activity_type_id": {
               "type": [
-                "array",
-                "null"
+                "null",
+                "array"
               ],
               "items": {
                 "type": [
-                  "number",
-                  "null"
+                  "null",
+                  "number"
                 ]
               }
             },
             "pipeline_id": {
               "type": [
-                "array",
-                "null"
+                "null",
+                "array"
               ],
               "items": {
                 "type": [
-                  "number",
-                  "null"
+                  "null",
+                  "number"
                 ]
               }
             }
@@ -55,106 +54,108 @@
     },
     "assignee": {
       "type": [
-        "object",
-        "null"
+        "null",
+        "object"
       ],
       "additionalProperties": true,
       "properties": {
         "type": {
           "type": [
-            "string",
-            "null"
+            "null",
+            "string"
           ]
         },
         "id": {
           "type": [
-            "number",
-            "null"
+            "null",
+            "number"
           ]
         }
       }
     },
     "duration": {
       "type": [
-        "object",
-        "null"
+        "null",
+        "object"
       ],
       "additionalProperties": true,
       "properties": {
         "end": {
           "type": [
-            "string",
-            "null"
+            "null",
+            "string"
           ]
         },
         "start": {
           "type": [
-            "string",
-            "null"
+            "null",
+            "string"
           ]
         }
       }
     },
     "expected_outcome": {
       "type": [
-        "object",
-        "null"
+        "null",
+        "object"
       ],
       "additionalProperties": true,
       "properties": {
         "target": {
           "type": [
-            "number",
-            "null"
+            "null",
+            "number"
           ]
         },
         "tracking_metric": {
           "type": [
-            "string",
-            "null"
+            "null",
+            "string"
           ]
         }
       }
     },
     "id": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "interval": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "is_active": {
-      "type": "boolean"
+      "type": [
+        "null",
+        "boolean"
+      ]
     },
     "owner_id": {
       "type": [
-        "number",
-        "null"
+        "null",
+        "number"
       ]
     },
     "report_ids": {
       "type": [
-        "array",
-        "null"
+        "null",
+        "array"
       ],
       "items": {
         "type": [
-          "string",
-          "null"
+          "null",
+          "string"
         ]
       }
     },
     "title": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     }
-  },
-  "title": "Goals schema"
+  }
 }

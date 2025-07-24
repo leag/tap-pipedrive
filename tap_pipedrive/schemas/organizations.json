@@ -90,17 +90,20 @@
         },
         "street_number": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "route": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "sublocality": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "locality": {
@@ -117,7 +120,8 @@
         },
         "admin_area_level_2": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "country": {
@@ -134,7 +138,8 @@
         },
         "formatted_address": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         }
       }

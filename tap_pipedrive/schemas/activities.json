@@ -132,47 +132,56 @@
         },
         "street_number": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "route": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "sublocality": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "locality": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "admin_area_level_1": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "admin_area_level_2": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "country": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "postal_code": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         },
         "formatted_address": {
           "type": [
-            "null"
+            "null",
+            "string"
           ]
         }
       }

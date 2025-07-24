@@ -175,7 +175,10 @@
         "array"
       ],
       "items": {
-        "type": "null"
+        "type": [
+          "null",
+          "string"
+        ]
       }
     },
     "group_id": {
@@ -191,7 +194,10 @@
       ]
     },
     "user_restrictions": {
-      "type": "null"
+      "type": [
+        "null",
+        "string"
+      ]
     },
     "description": {
       "type": [

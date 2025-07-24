@@ -227,7 +227,10 @@
         "array"
       ],
       "items": {
-        "type": "null"
+        "type": [
+          "null",
+          "string"
+        ]
       }
     },
     "created_by_user_id": {
@@ -237,7 +240,10 @@
       ]
     },
     "user_restrictions": {
-      "type": "null"
+      "type": [
+        "null",
+        "string"
+      ]
     },
     "description": {
       "type": [
