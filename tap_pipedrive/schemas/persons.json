@@ -136,18 +136,6 @@
           }
         }
       }
-    },
-    "label_ids": {
-      "type": [
-        "null",
-        "array"
-      ],
-      "items": {
-        "type": [
-          "null",
-          "integer"
-        ]
-      }
     }
   }
 }
