@@ -57,6 +57,7 @@
     },
     "industry": {
       "type": [
+        "integer",
         "null"
       ]
     },
