@@ -27,10 +27,15 @@ plugins:
           kind: date_iso8601
           label: Start Date
           description: Initial date to start extracting data from
+        - name: page_size
+          kind: integer
+          label: Page Size
+          description: Number of records to retrieve per API request
       settings_group_validation:
         - [api_token, start_date]
       config:
         start_date: "2010-01-01T00:00:00Z"
+        page_size: 500
   loaders:
     - name: target-jsonl
       variant: andyh1203
