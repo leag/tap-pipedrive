@@ -215,6 +215,18 @@
         "string"
       ],
       "format": "date-time"
+    },
+    "label_ids": {
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
     }
   }
 }
