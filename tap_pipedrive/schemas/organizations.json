@@ -63,6 +63,7 @@
     },
     "annual_revenue": {
       "type": [
+        "integer",
         "null"
       ]
     },
