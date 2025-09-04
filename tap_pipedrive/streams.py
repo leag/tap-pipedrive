@@ -51,6 +51,7 @@ class DealsStream(PipedriveStream):
         params: dict = {}
         params["limit"] = self.config.get("page_size", 500)
         params["sort_by"] = "update_time"
+        params["status"] = "open,won,lost,deleted"  # include all deals
 
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
