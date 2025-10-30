@@ -1,8 +1,8 @@
 # tap-pipedrive
 
-`tap-pipedrive` is a Singer tap for Pipedrive.
+`tap-pipedrive` is a Singer tap for Pipedrive, designed to extract data from the Pipedrive API and output it in a format compatible with the Singer specification. This allows for easy integration with a variety of data warehousing and analysis tools.
 
-Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
+Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps, this tap provides a robust and maintainable way to sync your Pipedrive data.
 
 ## Installation
 
@@ -62,6 +62,37 @@ tap is available by running:
 tap-pipedrive --about
 ```
 
+## Available Data Streams
+
+This tap supports the following data streams from the Pipedrive API:
+
+* Deals
+* Deal Fields
+* Goals
+* Files
+* Filters
+* Lead Labels
+* Leads
+* Notes
+* Activities
+* Activity Fields
+* Activity Types
+* Currencies
+* Mail Threads
+* Mail
+* Organizations
+* Organization Fields
+* Permission Sets
+* Persons
+* Person Fields
+* Pipelines
+* Products
+* Product Fields
+* Roles
+* Stages
+* Users
+* Deal Products
+
 ### Configure using environment variables
 
 This Singer tap will automatically import any environment variables within the working directory's
@@ -74,9 +105,24 @@ This tap requires an API token for authentication. You can obtain your API token
 
 ## Usage
 
-You can easily run `tap-pipedrive` by itself or in a pipeline using [Meltano](https://meltano.com/).
+You can run `tap-pipedrive` by itself, or in a pipeline with a target.
 
 ### Executing the Tap Directly
+
+To run the tap directly and output the data to standard output, use the following command:
+
+```bash
+tap-pipedrive --config CONFIG --discover > ./catalog.json
+tap-pipedrive --config CONFIG --catalog ./catalog.json > ./state.json
+```
+
+### Running with a Target
+
+To run the tap with a target, such as `target-jsonl`, you can pipe the output of the tap to the target:
+
+```bash
+tap-pipedrive --config CONFIG --catalog ./catalog.json | target-jsonl > ./state.json
+```
 
 ```bash
 tap-pipedrive --version

@@ -9,7 +9,11 @@ from tap_pipedrive import streams
 
 
 class TapPipedrive(Tap):
-    """Pipedrive tap class."""
+    """Pipedrive tap class.
+
+    This class is the entry point for the Pipedrive tap. It discovers streams
+    and manages configuration.
+    """
 
     name = "tap-pipedrive"
 

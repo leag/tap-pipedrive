@@ -15,7 +15,10 @@ SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
 
 class DealsStream(PipedriveStream):
-    """Pipedrive deals stream."""
+    """Pipedrive deals stream.
+
+    This stream syncs deals from the Pipedrive API.
+    """
 
     name = "deals"
     path = "v1/recents"
@@ -28,7 +31,15 @@ class DealsStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -41,12 +52,23 @@ class DealsStream(PipedriveStream):
         record: dict,
         context: Context | None = None,  # noqa: ARG002
     ) -> Context:
-        """Return the context for child streams."""
+        """Return the context for child streams.
+
+        Args:
+            record: The record to get the child context for.
+            context: The stream context.
+
+        Returns:
+            The child context.
+        """
         return {"deal_id": record["id"]}
 
 
 class DealFieldsStream(PipedriveStream):
-    """Pipedrive deal_fields stream."""
+    """Pipedrive deal_fields stream.
+
+    This stream syncs deal fields from the Pipedrive API.
+    """
 
     name = "deal_fields"
     path = "v1/dealFields"
@@ -55,7 +77,10 @@ class DealFieldsStream(PipedriveStream):
 
 
 class GoalsStream(PipedriveStream):
-    """Pipedrive goals stream."""
+    """Pipedrive goals stream.
+
+    This stream syncs goals from the Pipedrive API.
+    """
 
     name = "goals"
     path = "v1/goals/find"
@@ -64,7 +89,10 @@ class GoalsStream(PipedriveStream):
 
 
 class FilesStream(PipedriveStream):
-    """Pipedrive files stream."""
+    """Pipedrive files stream.
+
+    This stream syncs files from the Pipedrive API.
+    """
 
     name = "files"
     path = "v1/recents"
@@ -77,7 +105,15 @@ class FilesStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -87,7 +123,10 @@ class FilesStream(PipedriveStream):
 
 
 class FiltersStream(PipedriveStream):
-    """Pipedrive filters stream."""
+    """Pipedrive filters stream.
+
+    This stream syncs filters from the Pipedrive API.
+    """
 
     name = "filters"
     path = "v1/filters"
@@ -95,7 +134,10 @@ class FiltersStream(PipedriveStream):
 
 
 class LeadLabelsStream(PipedriveStream):
-    """Pipedrive lead_labels stream."""
+    """Pipedrive lead_labels stream.
+
+    This stream syncs lead labels from the Pipedrive API.
+    """
 
     name = "lead_labels"
     path = "v1/leadLabels"
@@ -103,7 +145,10 @@ class LeadLabelsStream(PipedriveStream):
 
 
 class LeadsStream(PipedriveStream):
-    """Pipedrive leads stream."""
+    """Pipedrive leads stream.
+
+    This stream syncs leads from the Pipedrive API.
+    """
 
     name = "leads"
     path = "v1/leads"
@@ -111,7 +156,10 @@ class LeadsStream(PipedriveStream):
 
 
 class NotesStream(PipedriveStream):
-    """Pipedrive notes stream."""
+    """Pipedrive notes stream.
+
+    This stream syncs notes from the Pipedrive API.
+    """
 
     name = "notes"
     path = "v1/recents"
@@ -124,7 +172,15 @@ class NotesStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -134,7 +190,10 @@ class NotesStream(PipedriveStream):
 
 
 class ActivitiesStream(PipedriveStream):
-    """Pipedrive activities stream."""
+    """Pipedrive activities stream.
+
+    This stream syncs activities from the Pipedrive API.
+    """
 
     name = "activities"
     path = "v1/recents"
@@ -147,7 +206,15 @@ class ActivitiesStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -157,7 +224,10 @@ class ActivitiesStream(PipedriveStream):
 
 
 class ActivityTypesStream(PipedriveStream):
-    """Pipedrive activity_types stream."""
+    """Pipedrive activity_types stream.
+
+    This stream syncs activity types from the Pipedrive API.
+    """
 
     name = "activity_types"
     path = "v1/recents"
@@ -170,7 +240,15 @@ class ActivityTypesStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -180,7 +258,10 @@ class ActivityTypesStream(PipedriveStream):
 
 
 class ActivityFieldsStream(PipedriveStream):
-    """Pipedrive activity_fields stream."""
+    """Pipedrive activity_fields stream.
+
+    This stream syncs activity fields from the Pipedrive API.
+    """
 
     name = "activity_fields"
     path = "v1/activityFields"
@@ -189,7 +270,10 @@ class ActivityFieldsStream(PipedriveStream):
 
 
 class CurrenciesStream(PipedriveStream):
-    """Pipedrive currencies stream."""
+    """Pipedrive currencies stream.
+
+    This stream syncs currencies from the Pipedrive API.
+    """
 
     name = "currencies"
     path = "v1/currencies"
@@ -197,7 +281,10 @@ class CurrenciesStream(PipedriveStream):
 
 
 class MailThreadsStream(PipedriveStream):
-    """Pipedrive mailThreads stream."""
+    """Pipedrive mailThreads stream.
+
+    This stream syncs mail threads from the Pipedrive API.
+    """
 
     name = "mailThreads"
     path = "v1/mailbox/mailThreads"
@@ -208,12 +295,23 @@ class MailThreadsStream(PipedriveStream):
         record: dict,
         context: Context | None = None,  # noqa: ARG002
     ) -> Context:
-        """Return the context for child streams."""
+        """Return the context for child streams.
+
+        Args:
+            record: The record to get the child context for.
+            context: The stream context.
+
+        Returns:
+            The child context.
+        """
         return {"thread_id": record["id"]}
 
 
 class MailStream(PipedriveStream):
-    """Pipedrive mail stream."""
+    """Pipedrive mail stream.
+
+    This stream syncs mail messages from the Pipedrive API.
+    """
 
     name = "mail"
     path = "v1/mailbox/mailThreads/{thread_id}/mailMessages"
@@ -222,7 +320,10 @@ class MailStream(PipedriveStream):
 
 
 class OrganizationsStream(PipedriveStream):
-    """Pipedrive organizations stream."""
+    """Pipedrive organizations stream.
+
+    This stream syncs organizations from the Pipedrive API.
+    """
 
     name = "organizations"
     path = "v1/recents"
@@ -235,7 +336,15 @@ class OrganizationsStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -245,7 +354,10 @@ class OrganizationsStream(PipedriveStream):
 
 
 class OrganizationFieldsStream(PipedriveStream):
-    """Pipedrive organization_fields stream."""
+    """Pipedrive organization_fields stream.
+
+    This stream syncs organization fields from the Pipedrive API.
+    """
 
     name = "organization_fields"
     path = "v1/organizationFields"
@@ -254,7 +366,10 @@ class OrganizationFieldsStream(PipedriveStream):
 
 
 class PermissionSetsStream(PipedriveStream):
-    """Pipedrive permission_sets stream."""
+    """Pipedrive permission_sets stream.
+
+    This stream syncs permission sets from the Pipedrive API.
+    """
 
     name = "permission_sets"
     path = "v1/permissionSets"
@@ -262,7 +377,10 @@ class PermissionSetsStream(PipedriveStream):
 
 
 class PersonsStream(PipedriveStream):
-    """Pipedrive persons stream."""
+    """Pipedrive persons stream.
+
+    This stream syncs persons from the Pipedrive API.
+    """
 
     name = "persons"
     path = "v1/recents"
@@ -275,7 +393,15 @@ class PersonsStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -285,7 +411,10 @@ class PersonsStream(PipedriveStream):
 
 
 class PersonFieldsStream(PipedriveStream):
-    """Pipedrive person_fields stream."""
+    """Pipedrive person_fields stream.
+
+    This stream syncs person fields from the Pipedrive API.
+    """
 
     name = "person_fields"
     path = "v1/personFields"
@@ -294,7 +423,10 @@ class PersonFieldsStream(PipedriveStream):
 
 
 class PipelinesStream(PipedriveStream):
-    """Pipedrive pipelines stream."""
+    """Pipedrive pipelines stream.
+
+    This stream syncs pipelines from the Pipedrive API.
+    """
 
     name = "pipelines"
     path = "v1/recents"
@@ -307,7 +439,15 @@ class PipelinesStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -317,7 +457,10 @@ class PipelinesStream(PipedriveStream):
 
 
 class ProductsStream(PipedriveStream):
-    """Pipedrive products stream."""
+    """Pipedrive products stream.
+
+    This stream syncs products from the Pipedrive API.
+    """
 
     name = "products"
     path = "v1/recents"
@@ -330,7 +473,15 @@ class ProductsStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -340,7 +491,10 @@ class ProductsStream(PipedriveStream):
 
 
 class ProductFieldsStream(PipedriveStream):
-    """Pipedrive product_fields stream."""
+    """Pipedrive product_fields stream.
+
+    This stream syncs product fields from the Pipedrive API.
+    """
 
     name = "product_fields"
     path = "v1/productFields"
@@ -349,7 +503,10 @@ class ProductFieldsStream(PipedriveStream):
 
 
 class RolesStream(PipedriveStream):
-    """Pipedrive roles stream."""
+    """Pipedrive roles stream.
+
+    This stream syncs roles from the Pipedrive API.
+    """
 
     name = "roles"
     path = "v1/roles"
@@ -357,7 +514,10 @@ class RolesStream(PipedriveStream):
 
 
 class StagesStream(PipedriveStream):
-    """Pipedrive stages stream."""
+    """Pipedrive stages stream.
+
+    This stream syncs stages from the Pipedrive API.
+    """
 
     name = "stages"
     path = "v1/stages"
@@ -365,7 +525,10 @@ class StagesStream(PipedriveStream):
 
 
 class UsersStream(PipedriveStream):
-    """Pipedrive users stream."""
+    """Pipedrive users stream.
+
+    This stream syncs users from the Pipedrive API.
+    """
 
     name = "users"
     path = "v1/recents"
@@ -378,7 +541,15 @@ class UsersStream(PipedriveStream):
         context: Context | None,
         next_page_token: _TToken | None,
     ) -> dict[str, t.Any]:
-        """Return URL parameters for the request."""
+        """Return URL parameters for the request.
+
+        Args:
+            context: The stream context.
+            next_page_token: The next page token.
+
+        Returns:
+            A dictionary of URL parameters.
+        """
         params: dict = super().get_url_params(context, next_page_token)
         starting_date = self.get_starting_timestamp(context)
         if starting_date:
@@ -388,7 +559,10 @@ class UsersStream(PipedriveStream):
 
 
 class DealProductsStream(PipedriveStream):
-    """Pipedrive deal_products stream."""
+    """Pipedrive deal_products stream.
+
+    This stream syncs deal products from the Pipedrive API.
+    """
 
     name = "deal_products"
     path = "v1/deals/{deal_id}/products"

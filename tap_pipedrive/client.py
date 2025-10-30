@@ -16,7 +16,11 @@ SCHEMAS_DIR = resources.files(__package__) / "schemas"
 
 
 class PipedriveStream(RESTStream):
-    """Pipedrive stream class."""
+    """Pipedrive stream class.
+
+    This class serves as a base for all Pipedrive streams. It handles
+    authentication, pagination, and backoff mechanisms.
+    """
 
     next_page_token_jsonpath = "$.additional_data.pagination.next_start"  # noqa: S105
     primary_keys = ("id",)
