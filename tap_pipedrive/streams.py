@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing as t
 from importlib import resources
 
+from singer_sdk import SchemaDirectory, StreamSchema
 from singer_sdk.authenticators import APIKeyAuthenticator
 
 from tap_pipedrive.client import PipedriveStream
@@ -14,7 +15,8 @@ if t.TYPE_CHECKING:
     from singer_sdk.helpers.types import Context
     from singer_sdk.streams.rest import _TToken
 
-SCHEMAS_DIR = resources.files(__package__) / "schemas"
+SCHEMAS_DIR = resources.files(__package__ or "tap_pipedrive") / "schemas"
+HTTP_BAD_REQUEST = 400
 
 
 class DealsStream(PipedriveStream):
@@ -27,7 +29,7 @@ class DealsStream(PipedriveStream):
     path = "v2/deals"
     replication_key = "update_time"
     records_jsonpath = "$.data[*]"
-    schema_filepath = SCHEMAS_DIR / "deals.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="deals")
     url_base = "https://preyinc2.pipedrive.com/api/"
     next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
     is_sorted = True
@@ -35,8 +37,7 @@ class DealsStream(PipedriveStream):
     @property
     def authenticator(self) -> APIKeyAuthenticator:
         """Return a new authenticator object with header authentication for v2 API."""
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="x-api-token",
             value=self.config.get("api_token", ""),
             location="header",
@@ -64,7 +65,7 @@ class DealsStream(PipedriveStream):
         self,
         row: types.Record,
         context: types.Context | None = None,  # noqa: ARG002
-    ) -> dict | None:
+    ) -> dict[str, t.Any] | None:
         """Move custom_fields to the top level."""
         if "custom_fields" in row:
             row.update(row.pop("custom_fields"))
@@ -88,7 +89,7 @@ class DealFieldsStream(PipedriveStream):
     name = "deal_fields"
     path = "v1/dealFields"
     primary_keys = ("key",)
-    schema_filepath = SCHEMAS_DIR / "deal_fields.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="deal_fields")
 
 
 class GoalsStream(PipedriveStream):
@@ -100,7 +101,7 @@ class GoalsStream(PipedriveStream):
     name = "goals"
     path = "v1/goals/find"
     records_jsonpath = "$.data.goals[*]"
-    schema_filepath = SCHEMAS_DIR / "goals.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="goals")
 
 
 class FilesStream(PipedriveStream):
@@ -113,7 +114,7 @@ class FilesStream(PipedriveStream):
     path = "v1/recents"
     replication_key = "update_time"
     records_jsonpath = "$.data[*].data[*]"
-    schema_filepath = SCHEMAS_DIR / "files.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="files")
 
     def get_url_params(
         self,
@@ -137,7 +138,7 @@ class FiltersStream(PipedriveStream):
 
     name = "filters"
     path = "v1/filters"
-    schema_filepath = SCHEMAS_DIR / "filters.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="filters")
 
 
 class LeadLabelsStream(PipedriveStream):
@@ -148,7 +149,7 @@ class LeadLabelsStream(PipedriveStream):
 
     name = "lead_labels"
     path = "v1/leadLabels"
-    schema_filepath = SCHEMAS_DIR / "lead_labels.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="lead_labels")
 
 
 class LeadsStream(PipedriveStream):
@@ -159,7 +160,7 @@ class LeadsStream(PipedriveStream):
 
     name = "leads"
     path = "v1/leads"
-    schema_filepath = SCHEMAS_DIR / "leads.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="leads")
 
 
 class NotesStream(PipedriveStream):
@@ -172,7 +173,7 @@ class NotesStream(PipedriveStream):
     path = "v1/recents"
     replication_key = "update_time"
     records_jsonpath = "$.data[*].data[*]"
-    schema_filepath = SCHEMAS_DIR / "notes.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="notes")
 
     def get_url_params(
         self,
@@ -198,7 +199,7 @@ class ActivitiesStream(PipedriveStream):
     path = "v2/activities"
     replication_key = "update_time"
     records_jsonpath = "$.data[*]"
-    schema_filepath = SCHEMAS_DIR / "activities.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="activities")
     url_base = "https://preyinc2.pipedrive.com/api/"
     next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
     is_sorted = True
@@ -206,8 +207,7 @@ class ActivitiesStream(PipedriveStream):
     @property
     def authenticator(self) -> APIKeyAuthenticator:
         """Return a new authenticator object with header authentication for v2 API."""
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="x-api-token",
             value=self.config.get("api_token", ""),
             location="header",
@@ -241,7 +241,7 @@ class ActivityTypesStream(PipedriveStream):
     path = "v1/recents"
     replication_key = "update_time"
     records_jsonpath = "$.data[*].data[*]"
-    schema_filepath = SCHEMAS_DIR / "activity_types.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="activity_types")
 
     def get_url_params(
         self,
@@ -266,7 +266,7 @@ class ActivityFieldsStream(PipedriveStream):
     name = "activity_fields"
     path = "v1/activityFields"
     primary_keys = ("key",)
-    schema_filepath = SCHEMAS_DIR / "activity_fields.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="activity_fields")
 
 
 class CurrenciesStream(PipedriveStream):
@@ -277,7 +277,7 @@ class CurrenciesStream(PipedriveStream):
 
     name = "currencies"
     path = "v1/currencies"
-    schema_filepath = SCHEMAS_DIR / "currencies.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="currencies")
 
 
 class MailThreadsStream(PipedriveStream):
@@ -288,7 +288,18 @@ class MailThreadsStream(PipedriveStream):
 
     name = "mailThreads"
     path = "v1/mailbox/mailThreads"
-    schema_filepath = SCHEMAS_DIR / "mailThreads.json"
+    mail_folder: str # inbox, sent, archive, drafts
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="mailThreads")
+
+    def get_url_params(
+        self,
+        context: Context | None,
+        next_page_token: _TToken | None,
+    ) -> dict[str, t.Any]:
+        """Return URL parameters for the request."""
+        params: dict = super().get_url_params(context, next_page_token)
+        params["folder"] = self.mail_folder
+        return params
 
     def get_child_context(
         self,
@@ -308,7 +319,7 @@ class MailStream(PipedriveStream):
     name = "mail"
     path = "v1/mailbox/mailThreads/{thread_id}/mailMessages"
     parent_stream_type = MailThreadsStream
-    schema_filepath = SCHEMAS_DIR / "mail.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="mail")
 
 
 class OrganizationsStream(PipedriveStream):
@@ -321,7 +332,7 @@ class OrganizationsStream(PipedriveStream):
     path = "v2/organizations"
     replication_key = "update_time"
     records_jsonpath = "$.data[*]"
-    schema_filepath = SCHEMAS_DIR / "organizations.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="organizations")
     url_base = "https://preyinc2.pipedrive.com/api/"
     next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
     is_sorted = True
@@ -329,8 +340,7 @@ class OrganizationsStream(PipedriveStream):
     @property
     def authenticator(self) -> APIKeyAuthenticator:
         """Return a new authenticator object with header authentication for v2 API."""
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="x-api-token",
             value=self.config.get("api_token", ""),
             location="header",
@@ -357,7 +367,7 @@ class OrganizationsStream(PipedriveStream):
         self,
         row: types.Record,
         context: types.Context | None = None,  # noqa: ARG002
-    ) -> dict | None:
+    ) -> dict[str, t.Any] | None:
         """Move custom_fields to the top level."""
         if "custom_fields" in row:
             row.update(row.pop("custom_fields"))
@@ -373,7 +383,7 @@ class OrganizationFieldsStream(PipedriveStream):
     name = "organization_fields"
     path = "v1/organizationFields"
     primary_keys = ("key",)
-    schema_filepath = SCHEMAS_DIR / "organization_fields.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="organization_fields")
 
 
 class PermissionSetsStream(PipedriveStream):
@@ -384,7 +394,7 @@ class PermissionSetsStream(PipedriveStream):
 
     name = "permission_sets"
     path = "v1/permissionSets"
-    schema_filepath = SCHEMAS_DIR / "permission_sets.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="permission_sets")
 
 
 class PersonsStream(PipedriveStream):
@@ -397,15 +407,14 @@ class PersonsStream(PipedriveStream):
     path = "v2/persons"
     replication_key = "update_time"
     records_jsonpath = "$.data[*]"
-    schema_filepath = SCHEMAS_DIR / "persons.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="persons")
     url_base = "https://preyinc2.pipedrive.com/api/"
     next_page_token_jsonpath = "$.additional_data.next_cursor"  # noqa: S105
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:
         """Return a new authenticator object with header authentication for v2 API."""
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="x-api-token",
             value=self.config.get("api_token", ""),
             location="header",
@@ -432,7 +441,7 @@ class PersonsStream(PipedriveStream):
         self,
         row: types.Record,
         context: types.Context | None = None,  # noqa: ARG002
-    ) -> dict | None:
+    ) -> dict[str, t.Any] | None:
         """Move custom_fields to the top level."""
         if "custom_fields" in row:
             row.update(row.pop("custom_fields"))
@@ -449,7 +458,7 @@ class PersonFieldsStream(PipedriveStream):
     name = "person_fields"
     path = "v1/personFields"
     primary_keys = ("key",)
-    schema_filepath = SCHEMAS_DIR / "person_fields.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="person_fields")
 
 
 class PipelinesStream(PipedriveStream):
@@ -462,7 +471,7 @@ class PipelinesStream(PipedriveStream):
     path = "v1/recents"
     replication_key = "update_time"
     records_jsonpath = "$.data[*].data[*]"
-    schema_filepath = SCHEMAS_DIR / "pipelines.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="pipelines")
 
     def get_url_params(
         self,
@@ -488,7 +497,7 @@ class ProductsStream(PipedriveStream):
     path = "v1/recents"
     replication_key = "update_time"
     records_jsonpath = "$.data[*].data[*]"
-    schema_filepath = SCHEMAS_DIR / "products.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="products")
 
     def get_url_params(
         self,
@@ -513,7 +522,7 @@ class ProductFieldsStream(PipedriveStream):
     name = "product_fields"
     path = "v1/productFields"
     primary_keys = ("key",)
-    schema_filepath = SCHEMAS_DIR / "product_fields.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="product_fields")
 
 
 class RolesStream(PipedriveStream):
@@ -524,7 +533,7 @@ class RolesStream(PipedriveStream):
 
     name = "roles"
     path = "v1/roles"
-    schema_filepath = SCHEMAS_DIR / "roles.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="roles")
 
 
 class StagesStream(PipedriveStream):
@@ -535,7 +544,7 @@ class StagesStream(PipedriveStream):
 
     name = "stages"
     path = "v1/stages"
-    schema_filepath = SCHEMAS_DIR / "stages.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="stages")
 
 
 class UsersStream(PipedriveStream):
@@ -548,7 +557,7 @@ class UsersStream(PipedriveStream):
     path = "v1/recents"
     records_jsonpath = "$.data[*].data[*]"
     replication_key = "modified"
-    schema_filepath = SCHEMAS_DIR / "users.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="users")
 
     def get_url_params(
         self,
@@ -573,4 +582,4 @@ class DealProductsStream(PipedriveStream):
     name = "deal_products"
     path = "v1/deals/{deal_id}/products"
     parent_stream_type = DealsStream
-    schema_filepath = SCHEMAS_DIR / "deal_products.json"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR), key="deal_products")

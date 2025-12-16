@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing as t
 from importlib import resources
 
+from singer_sdk import SchemaDirectory, StreamSchema
 from singer_sdk.authenticators import APIKeyAuthenticator
 from singer_sdk.streams import RESTStream
 
@@ -22,6 +23,7 @@ class PipedriveStream(RESTStream):
     primary_keys = ("id",)
     records_jsonpath = "$.data[*]"
     url_base = "https://api.pipedrive.com/"
+    schema = StreamSchema(SchemaDirectory(SCHEMAS_DIR))
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:
@@ -30,8 +32,7 @@ class PipedriveStream(RESTStream):
         Returns:
             An authenticator instance.
         """
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="api_token",
             value=self.config.get("api_token", ""),
             location="params",
